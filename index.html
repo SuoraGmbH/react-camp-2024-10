@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suora React Workshop</title>
+  </head>
+  <body>
+    <div id="root">
+      <h1>Suora React Workshop</h1>
+      <p>Die Entwicklungsumgebung läuft. Jetzt fehlt nur noch React :-)</p>
+      <p>Dafür muss die Datei <code>/src/index.tsx</code> angepasst werden.</p>
+
+      <!-- mit JS prüfen, ob die aktuelle seite auf localhost läuft. sonst warnung darstellen -->
+      <script>
+        if (location.hostname !== "localhost") {
+          document.getElementById("root").innerHTML = `
+<h1 style="color: red">Achtung, hier ist etwas kaputt</h1>
+<p>Die Seite läuft nicht auf localhost. Bitte starte die Entwicklungsumgebung mit <code>npm run start</code> und rufe die Seite dann unter <code>http://localhost:3000</code> auf.</p>
+   `;
+        }
+      </script>
+    </div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>

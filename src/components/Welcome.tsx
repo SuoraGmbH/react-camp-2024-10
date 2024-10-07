@@ -9,5 +9,9 @@ export const Welcome: React.FunctionComponent<Props> = ({ city }) => {
     return <h1>Hello, stranger!</h1>;
   }
 
-  return <h1>Hello {city.toUpperCase()}</h1>;
+  const handleClick = (event: React.MouseEvent) => {
+    console.log(event.pageY);
+  };
+
+  return <div onClick={handleClick}>Hello {city.toUpperCase()}</div>;
 };

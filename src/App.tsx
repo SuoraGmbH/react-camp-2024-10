@@ -2,6 +2,7 @@ import * as React from "react";
 import { Welcome } from "./components/Welcome.tsx";
 import TimeEntryView from "./components/TimeEntryView.tsx";
 import TimeEntry from "./domain/TimeEntry.ts";
+import TimeEntryForm from "./components/TimeEntryForm.tsx";
 
 function getTimeEntryFromBackend() {
   const timeEntry: TimeEntry = {
@@ -18,6 +19,7 @@ const App: React.FunctionComponent = () => {
   const timeEntry = getTimeEntryFromBackend();
   return (
     <>
+      <TimeEntryForm />
       <Welcome />
       <Welcome city="Oer-Erkenschwick" />
       <TimeEntryView timeEntry={timeEntry} />

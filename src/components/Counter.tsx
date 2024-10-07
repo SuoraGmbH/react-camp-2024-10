@@ -4,7 +4,7 @@ const Counter: React.FunctionComponent = () => {
   const [counter, setCounter] = useState(0);
 
   const handleClick = () => {
-    setCounter(counter + 1);
+    setCounter((counter) => counter + 1);
   };
 
   return (

@@ -1,13 +1,26 @@
 import * as React from "react";
 import { Welcome } from "./components/Welcome.tsx";
 import TimeEntryView from "./components/TimeEntryView.tsx";
+import TimeEntry from "./domain/TimeEntry.ts";
+
+function getTimeEntryFromBackend() {
+  const timeEntry: TimeEntry = {
+    id: "4711",
+    comment: "React Workshop",
+    start: new Date(),
+    end: new Date(),
+  };
+
+  return timeEntry;
+}
 
 const App: React.FunctionComponent = () => {
+  const timeEntry = getTimeEntryFromBackend();
   return (
     <>
       <Welcome />
       <Welcome city="Oer-Erkenschwick" />
-      <TimeEntryView comment="Hallo Welt" />
+      <TimeEntryView timeEntry={timeEntry} />
       Wann ist Mittagspause?
     </>
   );

@@ -3,7 +3,10 @@ import TimeEntryForm from "./components/TimeEntryForm.tsx";
 import TimeEntryList from "./components/TimeEntryList.tsx";
 import { useState } from "react";
 import TimeEntry from "./domain/TimeEntry.ts";
+import { GithubRepoStats } from "./components/GithubRepoStats.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import DynamicGithubRepoStats from "./components/DynamicGithubRepoStats.tsx";
+
 const queryClient = new QueryClient();
 
 const App: React.FunctionComponent = () => {
@@ -11,6 +14,12 @@ const App: React.FunctionComponent = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <GithubRepoStats repoName="SuoraGmbH/react-camp-2024-10" />
+      <GithubRepoStats repoName="facebook/react" />
+      <div style={{ border: "3px solid pink" }}>
+        <DynamicGithubRepoStats />
+      </div>
+      <hr />
       <TimeEntryList timeEntries={timeEntries} />
       <TimeEntryForm
         onNewTimeEntry={(timeEntry) => {

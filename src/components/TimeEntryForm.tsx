@@ -11,8 +11,13 @@ const TimeEntryForm: React.FunctionComponent<Props> = ({ onNewTimeEntry }) => {
     setInputValue(event.target.value);
   };
 
+  const formIsValid = inputValue.trim() === "";
+
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+    if (formIsValid) {
+      return;
+    }
     setInputValue("");
 
     onNewTimeEntry?.({
@@ -29,7 +34,9 @@ const TimeEntryForm: React.FunctionComponent<Props> = ({ onNewTimeEntry }) => {
         <input onChange={handleChange} value={inputValue} />
       </div>
       <p>{inputValue}</p>
-      <button type="submit">Speichern</button>
+      <button disabled={formIsValid} type="submit">
+        Speichern
+      </button>
     </form>
   );
 };

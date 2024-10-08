@@ -3,7 +3,7 @@ type RepoData = {
   stargazers_count: number;
 };
 
-export const fetchReactRepoData = async (): Promise<RepoData> => {
+export const fetchGithubRepoData = async (): Promise<RepoData> => {
   try {
     const response = await fetch("https://api.github.com/repos/facebook/react");
     const data = await response.json();

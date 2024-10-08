@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import { fetchReactRepoData } from "./fetchReactRepoData.ts";
+import { fetchGithubRepoData } from "./fetchGithubRepoData.ts";
 
 const container = document.getElementById("root");
 if (container === null) {
@@ -10,4 +10,4 @@ if (container === null) {
   reactRoot.render(<App />);
 }
 
-console.log(fetchReactRepoData());
+console.log(fetchGithubRepoData());

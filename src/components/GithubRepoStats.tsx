@@ -23,7 +23,7 @@ export const GithubRepoStats: React.FunctionComponent = () => {
   return (
     <div>
       <button onClick={() => setReloadCounter((counter) => counter + 1)}>
-        Neuladen
+        Neuladen (Counter: {reloadCounter})
       </button>
       facebook/react hat {stargazersCount} Sternchen ⭐
     </div>

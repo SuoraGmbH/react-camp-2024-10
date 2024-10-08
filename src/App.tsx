@@ -6,7 +6,7 @@ const App: React.FunctionComponent = () => {
   return (
     <>
       <TimeEntryList />
-      <TimeEntryForm />
+      <TimeEntryForm onNewTimeEntry={(timeEntry) => console.log(timeEntry)} />
     </>
   );
 };

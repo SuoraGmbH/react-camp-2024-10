@@ -5,7 +5,7 @@ export const GithubRepoStats: React.FunctionComponent = () => {
   const [stargazersCount, setStargazersCount] = useState(0);
 
   useEffect(() => {
-    fetchGithubRepoData().then((repoData) => {
+    fetchGithubRepoData("facebook/react").then((repoData) => {
       setStargazersCount(repoData.stargazers_count);
     });
   }, []);

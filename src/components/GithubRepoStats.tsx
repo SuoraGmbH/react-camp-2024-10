@@ -3,12 +3,10 @@ import { fetchGithubRepoData } from "../fetchGithubRepoData.ts";
 
 interface Props {
   repoName: string;
-  highlight?: boolean;
 }
 
 export const GithubRepoStats: React.FunctionComponent<Props> = ({
   repoName,
-  highlight = false,
 }) => {
   const [stargazersCount, setStargazersCount] = useState(0);
 
@@ -23,11 +21,7 @@ export const GithubRepoStats: React.FunctionComponent<Props> = ({
   }
 
   return (
-    <div
-      style={{
-        border: highlight ? "2px solid pink" : "",
-      }}
-    >
+    <div>
       {repoName} hat {stargazersCount} Sternchen ⭐
     </div>
   );

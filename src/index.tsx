@@ -9,21 +9,10 @@ if (container === null) {
   reactRoot.render(<App />);
 }
 
-const fetchReactData = () => {
-  const responsePromise = fetch("https://api.github.com/repos/facebook/react");
-
-  responsePromise
-    .then((response) => response.json())
-    .then((data) => data.archive_url)
-    .then((archiveUrl) => console.log(archiveUrl))
-    .catch(function (reason) {
-      console.warn("Hier kommt meine Meldung");
-      console.error(reason);
-      console.warn("Das war meine Meldung");
-    })
-    .finally(function () {
-      console.log("Wir sind finally fertig!");
-    });
+const fetchReactData = async () => {
+  const response = await fetch("https://localhost:8080/repos/facebook/react");
+  const data = await response.json();
+  console.log(data.archive_url);
 };
 
 fetchReactData();

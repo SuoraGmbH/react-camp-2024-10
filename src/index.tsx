@@ -14,6 +14,12 @@ const fetchReactData = () => {
 
   responsePromise.then(function (response) {
     console.log(response);
+
+    response.json().then(function (bodyData) {
+      console.log(bodyData);
+    });
+
+    console.log("Ich kann jetzt was anderes machen");
   });
 
   responsePromise.catch(function (reason) {

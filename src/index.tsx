@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import { fetchReactRepoData } from "./fetchReactRepoData.ts";
 
 const container = document.getElementById("root");
 if (container === null) {
@@ -8,27 +9,5 @@ if (container === null) {
   const reactRoot = createRoot(container);
   reactRoot.render(<App />);
 }
-
-type RepoData = {
-  archive_url: string;
-  stargazers_count: number;
-};
-
-const fetchReactRepoData = async (): Promise<RepoData> => {
-  try {
-    const response = await fetch("https://api.github.com/repos/facebook/react");
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    if (error instanceof TypeError) {
-      console.warn(
-        `An error was caught: ${error.name}, message: ${error.message}.`,
-      );
-    }
-
-    throw error;
-  }
-};
 
 console.log(fetchReactRepoData());

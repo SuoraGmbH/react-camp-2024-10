@@ -12,15 +12,15 @@ if (container === null) {
 const fetchReactData = () => {
   const responsePromise = fetch("https://api.github.com/repos/facebook/react");
 
+  // .then(function (response) {
+  //   console.log(response);
+  //
+  //   return response.json();
+  // })
   responsePromise
-    .then(function (response) {
-      console.log(response);
-
-      return response.json();
-    })
-    .then(function (bodyData) {
-      console.log(bodyData);
-    })
+    .then((response) => response.json())
+    .then((data) => data.archive_url)
+    .then((archiveUrl) => console.log(archiveUrl))
     .catch(function (reason) {
       console.warn("Hier kommt meine Meldung");
       console.error(reason);

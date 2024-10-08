@@ -1,5 +1,6 @@
 import React from "react";
 import TimeEntry from "../domain/TimeEntry.ts";
+import TimeEntryView from "./TimeEntryView.tsx";
 
 const TimeEntryList: React.FunctionComponent = () => {
   const timeEntries: TimeEntry[] = [
@@ -24,11 +25,11 @@ const TimeEntryList: React.FunctionComponent = () => {
   ];
 
   return (
-    <ul>
+    <>
       {timeEntries.map((timeEntry) => (
-        <li key={timeEntry.id}>{timeEntry.comment}</li>
+        <TimeEntryView key={timeEntry.id} timeEntry={timeEntry} />
       ))}
-    </ul>
+    </>
   );
 };
 

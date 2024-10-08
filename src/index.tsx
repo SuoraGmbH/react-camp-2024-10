@@ -9,22 +9,26 @@ if (container === null) {
   reactRoot.render(<App />);
 }
 
-const fetchReactData = async () => {
+type RepoData = {
+  archive_url: string;
+  stargazers_count: number;
+};
+
+const fetchReactRepoData = async (): Promise<RepoData> => {
   try {
     const response = await fetch("https://api.github.com/repos/facebook/react");
     const data = await response.json();
-    console.log(data.archive_url);
 
-    throw new Error("nö.");
+    return data;
   } catch (error) {
     if (error instanceof TypeError) {
       console.warn(
         `An error was caught: ${error.name}, message: ${error.message}.`,
       );
-    } else {
-      throw error;
     }
+
+    throw error;
   }
 };
 
-fetchReactData();
+console.log(fetchReactRepoData());

@@ -32,6 +32,9 @@ export const GithubRepoStats: React.FunctionComponent<Props> = ({
       <button onClick={() => refetch()}>♻️</button>
       {repoName} hat {data.stargazers_count.toLocaleString()} Sternchen ⭐
       {isFetching ? "♻️" : ""}
+      <pre>
+        Es wurde zuletzt am {data.pushed_at.toLocaleDateString()} gepushed
+      </pre>
     </div>
   );
 };

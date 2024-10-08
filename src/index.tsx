@@ -10,9 +10,7 @@ if (container === null) {
 }
 
 const fetchReactData = () => {
-  console.log("ich lade daten");
   const responsePromise = fetch("https://api.github.com/repos/facebook/react");
-  console.log(responsePromise);
 
   responsePromise.then(function (response) {
     console.log(response);

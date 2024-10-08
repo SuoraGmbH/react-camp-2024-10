@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { fetchGithubRepoData } from "../fetchGithubRepoData.ts";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   repoName: string;
@@ -8,20 +9,22 @@ interface Props {
 export const GithubRepoStats: React.FunctionComponent<Props> = ({
   repoName,
 }) => {
-  const [stargazersCount, setStargazersCount] = useState(0);
+  const queryResult = useQuery({
+    queryFn: async () => {
+      const repoData = await fetchGithubRepoData(repoName);
 
-  useEffect(() => {
-    fetchGithubRepoData(repoName)
-      .then((repo) => repo.stargazers_count)
-      .then(setStargazersCount);
-  }, [repoName]);
-  if (stargazersCount === 0) {
+      return repoData.stargazers_count;
+    },
+    queryKey: [repoName],
+  });
+
+  if (queryResult.isLoading) {
     return <div>Loading…</div>;
   }
 
   return (
     <div>
-      {repoName} hat {stargazersCount} Sternchen ⭐
+      {repoName} hat {queryResult.data} Sternchen ⭐
     </div>
   );
 };

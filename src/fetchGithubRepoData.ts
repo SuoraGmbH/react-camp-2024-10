@@ -12,9 +12,9 @@ export const fetchGithubRepoData = async (repoName: string) => {
     // const response = await fetch(`http://localhost:3001/timeEntries`);
     const response = await fetch(`https://api.github.com/repos/${repoName}`);
 
-    // if (response.status !== 200) {
-    //   throw new Error(`HTTP request failed with status ${response.status}`);
-    // }
+    if (response.status !== 200) {
+      throw new Error(`HTTP request failed with status ${response.status}`);
+    }
 
     const data: unknown = await response.json();
 

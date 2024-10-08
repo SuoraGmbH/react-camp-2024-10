@@ -11,7 +11,7 @@ if (container === null) {
 
 const fetchReactData = async () => {
   try {
-    const response = await fetch("https://localhost:8080/repos/facebook/react");
+    const response = await fetch("https://api.github.com/repos/facebook/react");
     const data = await response.json();
     console.log(data.archive_url);
 

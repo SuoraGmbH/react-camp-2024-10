@@ -9,7 +9,7 @@ interface Props {
 export const GithubRepoStats: React.FunctionComponent<Props> = ({
   repoName,
 }) => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isSuccess } = useQuery({
     queryFn: () => fetchGithubRepoData(repoName),
     queryKey: [repoName],
   });
@@ -18,9 +18,13 @@ export const GithubRepoStats: React.FunctionComponent<Props> = ({
     return <div>Loading…</div>;
   }
 
+  if (!isSuccess) {
+    return <div>kaputt</div>;
+  }
+
   return (
     <div>
-      {repoName} hat {data?.stargazers_count} Sternchen ⭐
+      {repoName} hat {data.stargazers_count} Sternchen ⭐
     </div>
   );
 };

@@ -7,7 +7,7 @@ const DynamicGithubRepoStats: React.FunctionComponent = () => {
     <div>
       <input onChange={(event) => setRepoName(event.target.value)} />
       test:
-      <GithubRepoStats highlight={true} repoName={repoName} />
+      <GithubRepoStats repoName={repoName} />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import TimeEntryView from "./components/TimeEntryView.tsx";
 import TimeEntry from "./domain/TimeEntry.ts";
 import TimeEntryForm from "./components/TimeEntryForm.tsx";
 import Counter from "./components/Counter.tsx";
+import { GithubRepoStats } from "./components/GithubRepoStats.tsx";
 
 function getTimeEntryFromBackend() {
   const timeEntry: TimeEntry = {
@@ -20,6 +21,7 @@ const App: React.FunctionComponent = () => {
   const timeEntry = getTimeEntryFromBackend();
   return (
     <>
+      <GithubRepoStats />
       <Counter />
       <TimeEntryForm />
       <Welcome />

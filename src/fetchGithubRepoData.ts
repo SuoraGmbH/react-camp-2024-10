@@ -7,7 +7,13 @@ export const fetchGithubRepoData = async (
   repoName: string,
 ): Promise<RepoData> => {
   try {
+    // const response = await fetch(`http://localhost:3001/timeEntries`);
     const response = await fetch(`https://api.github.com/repos/${repoName}`);
+
+    if (response.status !== 200) {
+      throw new Error(`HTTP request failed with status ${response.status}`);
+    }
+
     const data = await response.json();
 
     return data;

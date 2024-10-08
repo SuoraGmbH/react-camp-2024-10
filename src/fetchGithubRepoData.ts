@@ -1,22 +1,26 @@
-type RepoData = {
-  archive_url: string;
-  stargazers_count: number;
-};
+import { z } from "zod";
 
-export const fetchGithubRepoData = async (
-  repoName: string,
-): Promise<RepoData> => {
+const repoDataSchema = z.object({
+  stargazers_count: z.number(),
+  archive_url: z.string(),
+  pushed_at: z.coerce.date(),
+  forks_count: z.coerce.number(),
+});
+
+export const fetchGithubRepoData = async (repoName: string) => {
   try {
     // const response = await fetch(`http://localhost:3001/timeEntries`);
     const response = await fetch(`https://api.github.com/repos/${repoName}`);
 
-    if (response.status !== 200) {
-      throw new Error(`HTTP request failed with status ${response.status}`);
-    }
+    // if (response.status !== 200) {
+    //   throw new Error(`HTTP request failed with status ${response.status}`);
+    // }
 
-    const data = await response.json();
+    const data: unknown = await response.json();
 
-    return data;
+    const parsedData = repoDataSchema.parse(data);
+
+    return parsedData;
   } catch (error) {
     if (error instanceof TypeError) {
       console.warn(

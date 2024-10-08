@@ -16,6 +16,11 @@ const App: React.FunctionComponent = () => {
     <QueryClientProvider client={queryClient}>
       <GithubRepoStats repoName="SuoraGmbH/react-camp-2024-10" />
       <GithubRepoStats repoName="facebook/react" />
+      <GithubRepoStats repoName="facebook/react" />
+      <GithubRepoStats repoName="facebook/react" />
+      <GithubRepoStats repoName="facebook/react" />
+      <GithubRepoStats repoName="facebook/react" />
+      <GithubRepoStats repoName="facebook/react" />
       <div style={{ border: "3px solid pink" }}>
         <DynamicGithubRepoStats />
       </div>

@@ -5,6 +5,7 @@ import TimeEntry from "./domain/TimeEntry.ts";
 import TimeEntryForm from "./components/TimeEntryForm.tsx";
 import Counter from "./components/Counter.tsx";
 import { GithubRepoStats } from "./components/GithubRepoStats.tsx";
+import DynamicGithubRepoStats from "./components/DynamicGithubRepoStats.tsx";
 
 function getTimeEntryFromBackend() {
   const timeEntry: TimeEntry = {
@@ -21,6 +22,7 @@ const App: React.FunctionComponent = () => {
   const timeEntry = getTimeEntryFromBackend();
   return (
     <>
+      <DynamicGithubRepoStats />
       <GithubRepoStats repoName="facebook/react" />
       <Counter />
       <TimeEntryForm />

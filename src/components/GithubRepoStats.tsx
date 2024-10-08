@@ -10,11 +10,7 @@ export const GithubRepoStats: React.FunctionComponent<Props> = ({
   repoName,
 }) => {
   const queryResult = useQuery({
-    queryFn: async () => {
-      const repoData = await fetchGithubRepoData(repoName);
-
-      return repoData.stargazers_count;
-    },
+    queryFn: () => fetchGithubRepoData(repoName),
     queryKey: [repoName],
   });
 
@@ -24,7 +20,7 @@ export const GithubRepoStats: React.FunctionComponent<Props> = ({
 
   return (
     <div>
-      {repoName} hat {queryResult.data} Sternchen ⭐
+      {repoName} hat {queryResult.data?.stargazers_count} Sternchen ⭐
     </div>
   );
 };

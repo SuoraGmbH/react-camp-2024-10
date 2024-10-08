@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TimeEntry from "../domain/TimeEntry.ts";
 
 interface Props {
-  onNewTimeEntry: (timeEntry: TimeEntry) => void;
+  onNewTimeEntry?: (timeEntry: TimeEntry) => void;
 }
 
 const TimeEntryForm: React.FunctionComponent<Props> = ({ onNewTimeEntry }) => {
@@ -15,7 +15,7 @@ const TimeEntryForm: React.FunctionComponent<Props> = ({ onNewTimeEntry }) => {
     event.preventDefault();
     setInputValue("");
 
-    onNewTimeEntry({
+    onNewTimeEntry?.({
       id: crypto.randomUUID(),
       start: new Date(),
       end: new Date(),

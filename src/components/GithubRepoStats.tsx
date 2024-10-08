@@ -11,12 +11,9 @@ export const GithubRepoStats: React.FunctionComponent<Props> = ({
   const [stargazersCount, setStargazersCount] = useState(0);
 
   useEffect(() => {
-    (async function () {
-      const repoData = await fetchGithubRepoData(repoName);
+    fetchGithubRepoData(repoName).then((repoData) => {
       setStargazersCount(repoData.stargazers_count);
-    })();
-
-    return () => {};
+    });
   }, [repoName]);
 
   if (stargazersCount === 0) {

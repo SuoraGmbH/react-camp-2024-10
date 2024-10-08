@@ -1,18 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { fetchGithubRepoData } from "../fetchGithubRepoData.ts";
 
-export const GithubRepoStats: React.FunctionComponent = () => {
+interface Props {
+  repoName: string;
+  highlight?: boolean;
+}
+
+export const GithubRepoStats: React.FunctionComponent<Props> = ({
+  repoName,
+  highlight = false,
+}) => {
   const [stargazersCount, setStargazersCount] = useState(0);
 
   useEffect(() => {
-    fetchGithubRepoData("facebook/react").then((repoData) => {
+    fetchGithubRepoData(repoName).then((repoData) => {
       setStargazersCount(repoData.stargazers_count);
     });
-  }, []);
+  }, [repoName]);
 
   if (stargazersCount === 0) {
     return <div>Loading…</div>;
   }
 
-  return <div>facebook/react hat {stargazersCount} Sternchen ⭐</div>;
+  return (
+    <div
+      style={{
+        border: highlight ? "2px solid pink" : "",
+      }}
+    >
+      {repoName} hat {stargazersCount} Sternchen ⭐
+    </div>
+  );
 };

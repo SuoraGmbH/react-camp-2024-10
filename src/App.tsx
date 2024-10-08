@@ -21,7 +21,7 @@ const App: React.FunctionComponent = () => {
   const timeEntry = getTimeEntryFromBackend();
   return (
     <>
-      <GithubRepoStats />
+      <GithubRepoStats repoName="facebook/react" />
       <Counter />
       <TimeEntryForm />
       <Welcome />

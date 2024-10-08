@@ -6,6 +6,7 @@ import TimeEntry from "./domain/TimeEntry.ts";
 import { GithubRepoStats } from "./components/GithubRepoStats.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import DynamicGithubRepoStats from "./components/DynamicGithubRepoStats.tsx";
+import TimeEntryListFromBackend from "./components/TimeEntryListFromBackend.tsx";
 
 const queryClient = new QueryClient();
 
@@ -14,6 +15,8 @@ const App: React.FunctionComponent = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <TimeEntryListFromBackend />
+      <hr />
       <GithubRepoStats repoName="SuoraGmbH/react-camp-2024-10" />
       <GithubRepoStats repoName="facebook/react" />
       <GithubRepoStats repoName="facebook/react" />

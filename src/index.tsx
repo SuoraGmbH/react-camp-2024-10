@@ -12,11 +12,6 @@ if (container === null) {
 const fetchReactData = () => {
   const responsePromise = fetch("https://api.github.com/repos/facebook/react");
 
-  // .then(function (response) {
-  //   console.log(response);
-  //
-  //   return response.json();
-  // })
   responsePromise
     .then((response) => response.json())
     .then((data) => data.archive_url)

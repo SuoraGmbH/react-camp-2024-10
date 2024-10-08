@@ -12,25 +12,23 @@ if (container === null) {
 const fetchReactData = () => {
   const responsePromise = fetch("https://api.github.com/repos/facebook/react");
 
-  responsePromise.then(function (response) {
-    console.log(response);
+  responsePromise
+    .then(function (response) {
+      console.log(response);
 
-    response.json().then(function (bodyData) {
+      return response.json();
+    })
+    .then(function (bodyData) {
       console.log(bodyData);
+    })
+    .catch(function (reason) {
+      console.warn("Hier kommt meine Meldung");
+      console.error(reason);
+      console.warn("Das war meine Meldung");
+    })
+    .finally(function () {
+      console.log("Wir sind finally fertig!");
     });
-
-    console.log("Ich kann jetzt was anderes machen");
-  });
-
-  responsePromise.catch(function (reason) {
-    console.warn("Hier kommt meine Meldung");
-    console.error(reason);
-    console.warn("Das war meine Meldung");
-  });
-
-  responsePromise.finally(function () {
-    console.log("Wir sind finally fertig!");
-  });
 };
 
 fetchReactData();

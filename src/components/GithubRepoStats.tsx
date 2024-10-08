@@ -24,7 +24,7 @@ export const GithubRepoStats: React.FunctionComponent<Props> = ({
 
   return (
     <div>
-      {repoName} hat {data.stargazers_count} Sternchen ⭐
+      {repoName} hat {data.stargazers_count.toLocaleString()} Sternchen ⭐
     </div>
   );
 };

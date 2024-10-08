@@ -10,9 +10,21 @@ if (container === null) {
 }
 
 const fetchReactData = async () => {
-  const response = await fetch("https://localhost:8080/repos/facebook/react");
-  const data = await response.json();
-  console.log(data.archive_url);
+  try {
+    const response = await fetch("https://localhost:8080/repos/facebook/react");
+    const data = await response.json();
+    console.log(data.archive_url);
+
+    throw new Error("nö.");
+  } catch (error) {
+    if (error instanceof TypeError) {
+      console.warn(
+        `An error was caught: ${error.name}, message: ${error.message}.`,
+      );
+    } else {
+      throw error;
+    }
+  }
 };
 
 fetchReactData();

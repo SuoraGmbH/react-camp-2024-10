@@ -3,6 +3,7 @@ import { fetchReactRepoData } from "../fetchReactRepoData.ts";
 
 export const GithubRepoStats: React.FunctionComponent = () => {
   const [stargazersCount, setStargazersCount] = useState(0);
+  const [reloadCounter, setReloadCounter] = useState(0);
   console.log("GithubRepoStats rendert grade");
 
   useEffect(() => {
@@ -11,7 +12,7 @@ export const GithubRepoStats: React.FunctionComponent = () => {
       console.log("Daten sind da");
       setStargazersCount(repoData.stargazers_count);
     });
-  }, []);
+  }, [reloadCounter]);
 
   if (stargazersCount === 0) {
     console.log("GithubRepoStats ist fertig mit dem rendern");
@@ -19,5 +20,12 @@ export const GithubRepoStats: React.FunctionComponent = () => {
   }
 
   console.log("GithubRepoStats ist fertig mit dem rendern");
-  return <div>facebook/react hat {stargazersCount} Sternchen ⭐</div>;
+  return (
+    <div>
+      <button onClick={() => setReloadCounter((counter) => counter + 1)}>
+        Neuladen
+      </button>
+      facebook/react hat {stargazersCount} Sternchen ⭐
+    </div>
+  );
 };

@@ -1,6 +1,5 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import { fetchGithubRepoData } from "./fetchGithubRepoData.ts";
 
 const container = document.getElementById("root");
 if (container === null) {
@@ -9,5 +8,3 @@ if (container === null) {
   const reactRoot = createRoot(container);
   reactRoot.render(<App />);
 }
-
-console.log(fetchGithubRepoData());

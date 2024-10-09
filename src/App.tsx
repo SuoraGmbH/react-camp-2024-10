@@ -3,9 +3,9 @@ import TimeEntryForm from "./TimeTracking/TimeEntryForm.tsx";
 import TimeEntryList from "./TimeTracking/TimeEntryList.tsx";
 import { useState } from "react";
 import TimeEntry from "./domain/TimeEntry.ts";
-import { GithubRepoStats } from "./components/GithubRepoStats.tsx";
+import { GithubRepoStats } from "./Github/GithubRepoStats.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import DynamicGithubRepoStats from "./components/DynamicGithubRepoStats.tsx";
+import DynamicGithubRepoStats from "./Github/DynamicGithubRepoStats.tsx";
 import TimeEntryListFromBackend from "./TimeTracking/TimeEntryListFromBackend.tsx";
 
 const queryClient = new QueryClient();

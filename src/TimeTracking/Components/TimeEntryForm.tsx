@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import TimeEntry from "../Types/TimeEntry.ts";
 
 interface Props {
@@ -6,6 +6,7 @@ interface Props {
 }
 
 const TimeEntryForm: React.FunctionComponent<Props> = ({ onNewTimeEntry }) => {
+  const commentInputId = useId();
   const [inputValue, setInputValue] = useState("");
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setInputValue(event.target.value);
@@ -31,7 +32,8 @@ const TimeEntryForm: React.FunctionComponent<Props> = ({ onNewTimeEntry }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <input onChange={handleChange} value={inputValue} />
+        <label htmlFor={commentInputId}>Kommentar</label>
+        <input id={commentInputId} onChange={handleChange} value={inputValue} />
       </div>
       <p>{inputValue}</p>
       <button disabled={formIsValid} type="submit">

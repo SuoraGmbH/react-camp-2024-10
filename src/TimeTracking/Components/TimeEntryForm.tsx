@@ -6,7 +6,8 @@ interface Props {
 }
 
 const TimeEntryForm: React.FunctionComponent<Props> = ({ onNewTimeEntry }) => {
-  const commentInputId = useId();
+  const taskInputId = useId();
+  const projectInputId = useId();
   const [inputValue, setInputValue] = useState("");
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setInputValue(event.target.value);
@@ -31,10 +32,16 @@ const TimeEntryForm: React.FunctionComponent<Props> = ({ onNewTimeEntry }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor={commentInputId}>Kommentar</label>
-        <input id={commentInputId} onChange={handleChange} value={inputValue} />
-      </div>
+      <section>
+        <h1>Aufgabe</h1>
+        <label htmlFor={taskInputId}>Name</label>
+        <input id={taskInputId} onChange={handleChange} value={inputValue} />
+      </section>
+      <section>
+        <h1>Projekt</h1>
+        <label htmlFor={projectInputId}>Name</label>
+        <input id={projectInputId} />
+      </section>
       <p>{inputValue}</p>
       <button disabled={formIsValid} type="submit">
         Speichern

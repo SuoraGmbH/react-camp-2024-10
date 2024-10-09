@@ -1,11 +1,21 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "../../test-utils.tsx";
 import TimeEntryForm from "./TimeEntryForm.tsx";
 import userEvent from "@testing-library/user-event";
 import { vitest } from "vitest";
 
+function taskHeading() {
+  return screen.getByRole("heading", {
+    name: /aufgabe/i,
+  });
+}
+
+function taskSection() {
+  return taskHeading().closest("section");
+}
+
 function commentTextBox() {
-  return screen.getByRole("textbox", {
-    name: /kommentar/i,
+  return within(taskSection()).getByRole("textbox", {
+    name: /name/i,
   });
 }
 
@@ -33,6 +43,7 @@ describe("<TimeEntryForm />", () => {
     render(<TimeEntryForm />);
     const user = userEvent.setup();
 
+    screen.logTestingPlaygroundURL();
     await user.type(commentTextBox(), "Hallo Welt");
 
     expect(saveButton()).not.toBeDisabled();

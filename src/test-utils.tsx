@@ -1,5 +1,9 @@
 import React, { ReactElement } from "react";
-import { render, RenderOptions } from "@testing-library/react";
+import {
+  render,
+  RenderOptions,
+  within as originalWithin,
+} from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Taken from https://testing-library.com/docs/react-testing-library/setup#custom-render
@@ -25,3 +29,13 @@ const customRender = (
 
 export * from "@testing-library/react";
 export { customRender as render };
+
+// Ursprünglich haben wir das withinOrThrow genannt und damit nicht das orignal überschrieben.
+// Vielleicht wäre das die bessere Idee gewesen, aber es ist jetzt so.
+export const within = (element: HTMLElement | null) => {
+  if (!element) {
+    throw new Error("Element not found");
+  }
+
+  return originalWithin(element);
+};

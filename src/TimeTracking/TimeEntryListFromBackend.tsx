@@ -2,6 +2,7 @@ import React from "react";
 import TimeEntryList from "./Components/TimeEntryList.tsx";
 import { useQuery } from "@tanstack/react-query";
 import fetchTimeEntries from "./Api/fetchTimeEntries.ts";
+import LoadingIndicator from "../components/LoadingIndicator.tsx";
 
 const TimeEntryListFromBackend: React.FunctionComponent = () => {
   const { data, isSuccess, isLoading } = useQuery({
@@ -10,7 +11,7 @@ const TimeEntryListFromBackend: React.FunctionComponent = () => {
   });
 
   if (isLoading) {
-    return <div>Loading…</div>;
+    return <LoadingIndicator />;
   }
 
   if (!isSuccess) {

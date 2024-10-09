@@ -1,21 +1,12 @@
 import React from "react";
 import TimeEntryList from "./Components/TimeEntryList.tsx";
 import { useQuery } from "@tanstack/react-query";
-import { z } from "zod";
-import { timeEntrySchema } from "./Types/TimeEntry.ts";
-
-const timeEntriesResponseSchema = z.array(timeEntrySchema);
+import fetchTimeEntries from "./Api/fetchTimeEntries.ts";
 
 const TimeEntryListFromBackend: React.FunctionComponent = () => {
   const { data, isSuccess, isLoading } = useQuery({
     queryKey: ["timeEntries", "list"],
-    queryFn: async () => {
-      const response = await fetch("http://localhost:3001/timeEntries");
-
-      const responseData = await response.json();
-
-      return timeEntriesResponseSchema.parse(responseData);
-    },
+    queryFn: fetchTimeEntries,
   });
 
   if (isLoading) {

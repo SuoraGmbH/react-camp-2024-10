@@ -7,7 +7,7 @@ const timeEntrySchema = z.object({
   end: z.coerce.date(),
 });
 
-const exampleResponse = {
+export const exampleResponse = {
   success: true,
   timeEntries: [
     {
@@ -25,7 +25,7 @@ const exampleResponse = {
   ],
 };
 
-const errorResponse = {
+export const errorResponse = {
   success: false,
   error: "Database not available",
 };
@@ -45,7 +45,7 @@ const timeEntriesResponseSchema = z.discriminatedUnion("success", [
   timeEntriesErrorResponseSchema,
 ]);
 
-const parseResponse = (response: unknown) => {
+export const parseResponse = (response: unknown) => {
   const parsedResponse = timeEntriesResponseSchema.parse(response);
 
   if (parsedResponse.success) {

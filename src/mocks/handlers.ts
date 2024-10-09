@@ -2,13 +2,14 @@ import { http, HttpResponse } from "msw";
 
 export const handlers = [
   // Intercept "GET https://example.com/user" requests...
-  http.get("https://api.github.com/repos/facebook/react", () => {
+  http.get("https://api.github.com/repos/:organization/:repo", ({ params }) => {
+    // console.log(params);
     // ...and respond to them using this JSON response.
     return HttpResponse.json({
       id: 10270250,
       node_id: "MDEwOlJlcG9zaXRvcnkxMDI3MDI1MA==",
       name: "react",
-      full_name: "facebook/react",
+      full_name: `${params.organization}/${params.repo}`,
       private: false,
       owner: {
         login: "facebook",

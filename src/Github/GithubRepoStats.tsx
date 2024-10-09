@@ -1,6 +1,5 @@
 import React from "react";
-import { fetchGithubRepoData } from "../fetchGithubRepoData.ts";
-import { useQuery } from "@tanstack/react-query";
+import useGithubRepoDataQuery from "./useGithubRepoDataQuery.ts";
 
 interface Props {
   repoName: string;
@@ -10,10 +9,7 @@ export const GithubRepoStats: React.FunctionComponent<Props> = ({
   repoName,
 }) => {
   const { data, isFetching, isLoading, isSuccess, refetch, isStale, error } =
-    useQuery({
-      queryFn: () => fetchGithubRepoData(repoName),
-      queryKey: [repoName],
-    });
+    useGithubRepoDataQuery(repoName);
 
   if (isLoading) {
     return <div>Loading…</div>;

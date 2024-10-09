@@ -1,5 +1,5 @@
 import React from "react";
-import TimeEntry from "../domain/TimeEntry.ts";
+import TimeEntry from "./TimeEntry.ts";
 import TimeEntryView from "./TimeEntryView.tsx";
 
 interface Props {

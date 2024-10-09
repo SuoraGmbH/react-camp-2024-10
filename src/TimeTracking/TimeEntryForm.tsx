@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TimeEntry from "../domain/TimeEntry.ts";
+import TimeEntry from "./TimeEntry.ts";
 
 interface Props {
   onNewTimeEntry?: (timeEntry: TimeEntry) => void;

@@ -2,7 +2,7 @@ import * as React from "react";
 import TimeEntryForm from "./TimeTracking/TimeEntryForm.tsx";
 import TimeEntryList from "./TimeTracking/TimeEntryList.tsx";
 import { useState } from "react";
-import TimeEntry from "./domain/TimeEntry.ts";
+import TimeEntry from "./TimeTracking/TimeEntry.ts";
 import { GithubRepoStats } from "./Github/GithubRepoStats.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import DynamicGithubRepoStats from "./Github/DynamicGithubRepoStats.tsx";

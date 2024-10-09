@@ -1,6 +1,6 @@
 import * as React from "react";
-import TimeEntryForm from "./TimeTracking/TimeEntryForm.tsx";
-import TimeEntryList from "./TimeTracking/TimeEntryList.tsx";
+import TimeEntryForm from "./TimeTracking/Components/TimeEntryForm.tsx";
+import TimeEntryList from "./TimeTracking/Components/TimeEntryList.tsx";
 import { useState } from "react";
 import TimeEntry from "./TimeTracking/TimeEntry.ts";
 import { GithubRepoStats } from "./Github/GithubRepoStats.tsx";

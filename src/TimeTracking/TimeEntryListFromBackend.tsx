@@ -1,5 +1,5 @@
 import React from "react";
-import TimeEntryList from "./TimeEntryList.tsx";
+import TimeEntryList from "./Components/TimeEntryList.tsx";
 import { useQuery } from "@tanstack/react-query";
 import { z } from "zod";
 

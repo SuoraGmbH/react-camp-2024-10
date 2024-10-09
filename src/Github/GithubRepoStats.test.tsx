@@ -9,7 +9,7 @@ import { githubRepoFacebookReactRateLimitedMockHandler } from "./mocks/repo/face
 
 describe("<GithubRepoStats />", () => {
   beforeEach(() => {
-    mockServer.resetHandlers(githubRepoFacebookReactSuccessMockHandler);
+    mockServer.use(githubRepoFacebookReactSuccessMockHandler);
     const queryClient = new QueryClient();
     render(
       <QueryClientProvider client={queryClient}>
@@ -29,9 +29,15 @@ describe("<GithubRepoStats />", () => {
   });
 });
 
-it("renders an error if we were rate limitted", async () => {
-  mockServer.resetHandlers(githubRepoFacebookReactRateLimitedMockHandler);
-  const queryClient = new QueryClient();
+test("renders an error if we were rate limitted", async () => {
+  mockServer.use(githubRepoFacebookReactRateLimitedMockHandler);
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  });
   render(
     <QueryClientProvider client={queryClient}>
       <GithubRepoStats repoName="facebook/react" />
@@ -39,4 +45,5 @@ it("renders an error if we were rate limitted", async () => {
   );
 
   await screen.findByText(/kaputt/i);
+  expect(screen.getByText(/HTTP request failed with status 403/)).toBeVisible();
 });

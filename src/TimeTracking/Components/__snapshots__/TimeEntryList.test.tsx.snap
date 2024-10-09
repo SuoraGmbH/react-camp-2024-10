@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<TimeEntryList /> > it renders html according to snapshot 1`] = `
+<div>
+  <div>
+    Ein erster Test
+  </div>
+  <div>
+    Ein zweiter Test
+  </div>
+</div>
+`;

@@ -3,6 +3,16 @@ import TimeEntryForm from "./TimeEntryForm.tsx";
 import userEvent from "@testing-library/user-event";
 import { vitest } from "vitest";
 
+function commentTextBox() {
+  return screen.getByRole("textbox", {
+    name: /kommentar/i,
+  });
+}
+
+function saveButton() {
+  return screen.getByText("Speichern");
+}
+
 describe("<TimeEntryForm />", () => {
   it("renders without crashing", () => {
     render(<TimeEntryForm />);
@@ -11,26 +21,21 @@ describe("<TimeEntryForm />", () => {
   it("has a submit button", () => {
     render(<TimeEntryForm />);
 
-    expect(screen.getByText("Speichern")).toBeVisible();
+    expect(saveButton()).toBeVisible();
   });
 
   it("is disabled initially", () => {
     render(<TimeEntryForm />);
-    expect(screen.getByText("Speichern")).toBeDisabled();
+    expect(saveButton()).toBeDisabled();
   });
 
   it("enables the submit button after typing into the comment field", async () => {
     render(<TimeEntryForm />);
     const user = userEvent.setup();
 
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /kommentar/i,
-      }),
-      "Hallo Welt",
-    );
+    await user.type(commentTextBox(), "Hallo Welt");
 
-    expect(screen.getByText("Speichern")).not.toBeDisabled();
+    expect(saveButton()).not.toBeDisabled();
   });
 
   it("fires a newTimeEntry event on clicking the button after filling the form", async () => {
@@ -38,14 +43,9 @@ describe("<TimeEntryForm />", () => {
     render(<TimeEntryForm onNewTimeEntry={handleTimeEntryMock} />);
     const user = userEvent.setup();
 
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /kommentar/i,
-      }),
-      "Hallo Welt",
-    );
+    await user.type(commentTextBox(), "Hallo Welt");
 
-    await user.click(screen.getByText("Speichern"));
+    await user.click(saveButton());
 
     expect(handleTimeEntryMock).toHaveBeenCalledOnce();
   });
@@ -55,12 +55,7 @@ describe("<TimeEntryForm />", () => {
     render(<TimeEntryForm onNewTimeEntry={handleTimeEntryMock} />);
     const user = userEvent.setup();
 
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /kommentar/i,
-      }),
-      "Hallo Welt{enter}",
-    );
+    await user.type(commentTextBox(), "Hallo Welt{enter}");
 
     expect(handleTimeEntryMock).toHaveBeenCalledOnce();
   });
@@ -70,12 +65,7 @@ describe("<TimeEntryForm />", () => {
     render(<TimeEntryForm onNewTimeEntry={handleTimeEntryMock} />);
     const user = userEvent.setup();
 
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /kommentar/i,
-      }),
-      "{enter}",
-    );
+    await user.type(commentTextBox(), "{enter}");
 
     expect(handleTimeEntryMock).not.toHaveBeenCalled();
   });
@@ -84,43 +74,25 @@ describe("<TimeEntryForm />", () => {
     render(<TimeEntryForm />);
     const user = userEvent.setup();
 
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /kommentar/i,
-      }),
-      "Hallo Welt",
-    );
+    await user.type(commentTextBox(), "Hallo Welt");
 
     // Diese zusätzliche assertion ist eigentlich gegen best practices
-    expect(
-      screen.getByRole("textbox", {
-        name: /kommentar/i,
-      }),
-    ).toHaveValue("Hallo Welt");
+    expect(commentTextBox()).toHaveValue("Hallo Welt");
 
-    await user.click(screen.getByText("Speichern"));
+    await user.click(saveButton());
 
-    expect(
-      screen.getByRole("textbox", {
-        name: /kommentar/i,
-      }),
-    ).toHaveValue("");
+    expect(commentTextBox()).toHaveValue("");
   });
 
   test("after submitting the form, the submit button is disabled again", async () => {
     render(<TimeEntryForm />);
     const user = userEvent.setup();
 
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /kommentar/i,
-      }),
-      "Hallo Welt",
-    );
+    await user.type(commentTextBox(), "Hallo Welt");
 
-    await user.click(screen.getByText("Speichern"));
+    await user.click(saveButton());
 
-    expect(screen.getByText("Speichern")).toBeDisabled();
+    expect(saveButton()).toBeDisabled();
   });
 
   test("the new newTimeEntry event contains the entered comment", async () => {
@@ -129,12 +101,7 @@ describe("<TimeEntryForm />", () => {
     render(<TimeEntryForm onNewTimeEntry={handleTimeEntryMock} />);
     const user = userEvent.setup();
 
-    await user.type(
-      screen.getByRole("textbox", {
-        name: /kommentar/i,
-      }),
-      "Hallo Welt{enter}",
-    );
+    await user.type(commentTextBox(), "Hallo Welt{enter}");
 
     expect(handleTimeEntryMock).toHaveBeenCalledWith({
       id: expect.stringMatching(/[0-9a-f]{8}-/),

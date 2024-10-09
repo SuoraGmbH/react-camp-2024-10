@@ -1,5 +1,5 @@
 import React from "react";
-import TimeEntry from "../TimeEntry.ts";
+import TimeEntry from "../Types/TimeEntry.ts";
 
 interface Props {
   timeEntry: TimeEntry;

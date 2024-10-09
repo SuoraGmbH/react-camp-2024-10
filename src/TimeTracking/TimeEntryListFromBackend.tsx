@@ -3,9 +3,10 @@ import TimeEntryList from "./Components/TimeEntryList.tsx";
 import { useQuery } from "@tanstack/react-query";
 import fetchTimeEntries from "./Api/fetchTimeEntries.ts";
 import LoadingIndicator from "../components/LoadingIndicator.tsx";
+import QueryErrorComponent from "../components/QueryErrorComponent.tsx";
 
 const TimeEntryListFromBackend: React.FunctionComponent = () => {
-  const { data, isSuccess, isLoading } = useQuery({
+  const { data, isSuccess, isLoading, error } = useQuery({
     queryKey: ["timeEntries", "list"],
     queryFn: fetchTimeEntries,
   });
@@ -15,7 +16,7 @@ const TimeEntryListFromBackend: React.FunctionComponent = () => {
   }
 
   if (!isSuccess) {
-    return <div>Etwas ist schiefgelaufen.</div>;
+    return <QueryErrorComponent error={error} />;
   }
 
   return <TimeEntryList timeEntries={data} />;

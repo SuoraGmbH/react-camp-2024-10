@@ -1,12 +1,8 @@
-import React, { useState } from "react";
-const useCounter = (): [number, () => void] => {
-  const [counter, setCounter] = useState(0);
-
-  return [counter, () => setCounter((counter) => counter + 1)];
-};
+import React from "react";
+import useCounter from "./useCounter.ts";
 
 const Counter: React.FunctionComponent = () => {
-  const [counter, increment] = useCounter();
+  const { counter, increment } = useCounter();
 
   return (
     <div>

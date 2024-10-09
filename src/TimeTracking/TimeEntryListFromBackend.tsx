@@ -2,13 +2,7 @@ import React from "react";
 import TimeEntryList from "./Components/TimeEntryList.tsx";
 import { useQuery } from "@tanstack/react-query";
 import { z } from "zod";
-
-const timeEntrySchema = z.object({
-  id: z.string(),
-  comment: z.string(),
-  start: z.coerce.date(),
-  end: z.coerce.date(),
-});
+import { timeEntrySchema } from "./Types/TimeEntry.ts";
 
 const timeEntriesResponseSchema = z.array(timeEntrySchema);
 

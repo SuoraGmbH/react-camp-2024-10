@@ -7,6 +7,7 @@ export default defineConfig({
       target: "src/TimeTracking/Api/Client",
       schemas: "src/TimeTracking/Api/Schema",
       client: "react-query",
+      mock: true,
     },
   },
   jsonServerZod: {
